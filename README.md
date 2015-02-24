@@ -2,11 +2,13 @@
 
 Extensions for [purescript](http://www.purescript.org)
 
+- [Module documentation](docs/Module.md)
+
 Build with:
 ~~~
 npm install
 bower update
-grunt example1 (2,...)
+grunt 
 ~~~
 
 
