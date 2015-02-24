@@ -11,6 +11,11 @@
 
 module Extensions where
 
+import Data.Traversable(sequence)
+import Data.Array(map)
+
+
+
 foreign import fail
 """
   function fail(s) {
@@ -34,4 +39,5 @@ foreign import unsafeTrace
   }
 """ :: forall a. String -> a -> a
 
-
+mapM :: forall a b m. (Monad m) => (a -> m b) -> [a] -> m [b]
+mapM f array = sequence (map f array)

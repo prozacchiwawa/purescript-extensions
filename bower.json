@@ -2,6 +2,8 @@
   "name": "purescript-extensions",
   "version": "0.1.0",
   "dependencies": {
+    "purescript-foldable-traversable":"",
+    "purescript-arrays":""
   },
   "license": "Apache-2.0"
 }

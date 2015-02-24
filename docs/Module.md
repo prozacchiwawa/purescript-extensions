@@ -2,32 +2,46 @@
 
 ## Module Control.Monad.Eff.Alert
 
-### Types
-
 #### `Alert`
 
-    data Alert :: !
+``` purescript
+data Alert :: !
+```
 
-
-### Values
 
 #### `alert`
 
-    alert :: forall eff. String -> Eff (alert :: Alert | eff) Unit
+``` purescript
+alert :: forall eff. String -> Eff (alert :: Alert | eff) Unit
+```
+
 
 
 ## Module Extensions
 
-### Values
-
 #### `fail`
 
-    fail :: forall a. String -> a
+``` purescript
+fail :: forall a. String -> a
+```
+
 
 #### `undef`
 
-    undef :: forall a. a
+``` purescript
+undef :: forall a. a
+```
+
 
 #### `unsafeTrace`
 
-    unsafeTrace :: forall a. String -> a -> a
+``` purescript
+unsafeTrace :: forall a. String -> a -> a
+```
+
+
+#### `mapM`
+
+``` purescript
+mapM :: forall a b m. (Monad m) => (a -> m b) -> [a] -> m [b]
+```
