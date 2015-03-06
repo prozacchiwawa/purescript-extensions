@@ -17,13 +17,13 @@ import Data.Array
 foreign import replicate
 """
 function replicate(len) {
-  function (val) {
+  return function (val) {
     var rv = new Array(len);
     while (--len >= 0) {
         rv[len] = val;
-    }
+    };
     return rv;
-  }
+  };
 }
 """ :: forall a. Number -> a -> [a]
 
