@@ -17,6 +17,31 @@ alert :: forall eff. String -> Eff (alert :: Alert | eff) Unit
 
 
 
+## Module Data.Array.ExtendedRepl
+
+#### `replicate`
+
+``` purescript
+replicate :: forall a. Number -> a -> [a]
+```
+
+#### `elem`
+
+``` purescript
+elem :: forall a. (Eq a) => a -> [a] -> Boolean
+```
+
+
+## Module Data.Array.ST.Extended
+
+#### `runSTArrays`
+
+``` purescript
+runSTArrays :: forall a r. (forall h. Eff (st :: ST h | r) [STArray h a]) -> Eff r [[a]]
+```
+
+
+
 ## Module Extensions
 
 #### `fail`
