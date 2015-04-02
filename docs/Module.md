@@ -19,11 +19,6 @@ alert :: forall eff. String -> Eff (alert :: Alert | eff) Unit
 
 ## Module Data.Array.ExtendedRepl
 
-#### `replicate`
-
-``` purescript
-replicate :: forall a. Number -> a -> [a]
-```
 
 #### `elem`
 
@@ -43,6 +38,7 @@ runSTArrays :: forall a r. (forall h. Eff (st :: ST h | r) [STArray h a]) -> Eff
 
 
 ## Module Extensions
+
 
 #### `fail`
 
