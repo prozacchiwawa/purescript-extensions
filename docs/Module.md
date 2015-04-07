@@ -66,3 +66,14 @@ unsafeTrace :: forall a. String -> a -> a
 ``` purescript
 mapM :: forall a b m. (Monad m) => (a -> m b) -> [a] -> m [b]
 ```
+
+
+
+## Module Graphics.Canvas.Extended
+
+
+#### `Image`
+
+``` purescript
+data Image :: *
+```
