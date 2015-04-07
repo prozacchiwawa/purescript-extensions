@@ -13,7 +13,15 @@ module Data.Array.Extended where
 
 import Data.Array
 
+-- The slice method returns the selected elements in an array, as a new array object.
+-- It selects the elements starting at the given (1based) start argument, and ends at,
+-- but does not include, the given end argument.
 
--- elem is the list membership predicate, usually written in infix form, e.g., x `elem` xs.
-elem :: forall a. (Eq a) => a -> [a] -> Boolean
-elem e a = elemIndex e a /= -1
+foreign import slice
+  "function slice (s) {\
+  \  return function (e) {\
+  \    return function (l) {\
+  \      return l.slice(s, e);\
+  \    };\
+  \  };\
+  \}" :: forall a. Number -> Number -> [a] -> [a]
