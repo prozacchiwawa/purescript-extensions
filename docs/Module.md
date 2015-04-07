@@ -17,6 +17,16 @@ alert :: forall eff. String -> Eff (alert :: Alert | eff) Unit
 
 
 
+## Module Data.Array.Extended
+
+
+#### `elem`
+
+``` purescript
+elem :: forall a. (Eq a) => a -> [a] -> Boolean
+```
+
+
 ## Module Data.Array.ExtendedRepl
 
 
@@ -61,8 +71,26 @@ unsafeTrace :: forall a. String -> a -> a
 ```
 
 
+#### `unsafeCoerce`
+
+``` purescript
+unsafeCoerce :: forall a b. a -> b
+```
+
+
 #### `mapM`
 
 ``` purescript
 mapM :: forall a b m. (Monad m) => (a -> m b) -> [a] -> m [b]
+```
+
+
+
+## Module Graphics.Canvas.Extended
+
+
+#### `Image`
+
+``` purescript
+data Image :: *
 ```

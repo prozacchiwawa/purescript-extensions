@@ -39,5 +39,10 @@ foreign import unsafeTrace
   }
 """ :: forall a. String -> a -> a
 
+foreign import unsafeCoerce
+    "function unsafeCoerce(x) {\
+    \ return x;\
+    \}" :: forall a b. a -> b
+
 mapM :: forall a b m. (Monad m) => (a -> m b) -> [a] -> m [b]
 mapM f array = sequence (map f array)
