@@ -20,20 +20,10 @@ alert :: forall eff. String -> Eff (alert :: Alert | eff) Unit
 ## Module Data.Array.Extended
 
 
-#### `elem`
+#### `slice`
 
 ``` purescript
-elem :: forall a. (Eq a) => a -> [a] -> Boolean
-```
-
-
-## Module Data.Array.ExtendedRepl
-
-
-#### `elem`
-
-``` purescript
-elem :: forall a. (Eq a) => a -> [a] -> Boolean
+slice :: forall a. Number -> Number -> [a] -> [a]
 ```
 
 
@@ -84,6 +74,14 @@ unsafeCoerce :: forall a b. a -> b
 mapM :: forall a b m. (Monad m) => (a -> m b) -> [a] -> m [b]
 ```
 
+
+#### `mapE`
+
+``` purescript
+mapE :: forall a b e. (a -> Eff e b) -> [a] -> Eff e [b]
+```
+
+Map with effects over an array of values.
 
 
 ## Module Graphics.Canvas.Extended

@@ -13,6 +13,7 @@ module Extensions where
 
 import Data.Traversable(sequence)
 import Data.Array(map)
+import Control.Monad.Eff
 
 
 
@@ -46,3 +47,19 @@ foreign import unsafeCoerce
 
 mapM :: forall a b m. (Monad m) => (a -> m b) -> [a] -> m [b]
 mapM f array = sequence (map f array)
+
+-- | Map with effects over an array of values.
+foreign import mapE
+    """
+    function mapE(f) {
+      return function(arr) {
+        return function() {
+          var res = new Array(arr.length);
+          for (var i = 0; i < arr.length; i++) {
+            res[i] = f(arr[i])();
+          }
+          return res;
+        };
+      };
+    }
+    """ :: forall a b e. (a -> Eff e b) -> [a] -> Eff e [b]
