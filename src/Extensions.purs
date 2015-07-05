@@ -11,55 +11,25 @@
 
 module Extensions where
 
+import Prelude
 import Data.Traversable(sequence)
-import Data.Array(map)
 import Control.Monad.Eff
 
+-- Throws an error
+foreign import fail :: forall a . String -> a
 
+-- Undefined, which matches any type
+foreign import undef :: forall a . a
 
-foreign import fail
-"""
-  function fail(s) {
-      throw new Error(s);
-  }
-""" :: forall a . String -> a
+-- Trace or log for pure code
+foreign import unsafeTrace :: forall a. String -> a -> a
 
-foreign import undef
-"""
-  function undef() {
-    throw new Error("Encountered undefined");
-  }
-""" :: forall a . a
+-- Anything goes
+foreign import unsafeCoerce :: forall a b. a -> b
 
-foreign import unsafeTrace
-"""function unsafeTrace(s) {
-    return function (r) {
-        console.log(s);
-        return (r);
-    };
-  }
-""" :: forall a. String -> a -> a
-
-foreign import unsafeCoerce
-    "function unsafeCoerce(x) {\
-    \ return x;\
-    \}" :: forall a b. a -> b
-
-mapM :: forall a b m. (Monad m) => (a -> m b) -> [a] -> m [b]
+-- Monadic map
+mapM :: forall a b m. (Monad m) => (a -> m b) -> Array a -> m (Array b)
 mapM f array = sequence (map f array)
 
 -- | Map with effects over an array of values.
-foreign import mapE
-    """
-    function mapE(f) {
-      return function(arr) {
-        return function() {
-          var res = new Array(arr.length);
-          for (var i = 0; i < arr.length; i++) {
-            res[i] = f(arr[i])();
-          }
-          return res;
-        };
-      };
-    }
-    """ :: forall a b e. (a -> Eff e b) -> [a] -> Eff e [b]
+foreign import mapE :: forall a b e. (a -> Eff e b) -> Array a -> Eff e (Array b)

@@ -7,9 +7,6 @@ Extensions for [purescript](http://www.purescript.org)
 Build with:
 ~~~
 npm install
-bower update
-grunt 
+pulp dep install
+pulp build
 ~~~
-
-
-
