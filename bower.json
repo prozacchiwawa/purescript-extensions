@@ -2,8 +2,7 @@
   "name": "purescript-extensions",
   "version": "0.1.0",
   "dependencies": {
-    "purescript-arrays":"",
-    "purescript-extensions":"/home/jutaro/Develop/purescript-extensions/.git"
+    "purescript-arrays":""
   },
   "license": "Apache-2.0"
 }
