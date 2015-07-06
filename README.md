@@ -2,7 +2,9 @@
 
 Extensions for [purescript](http://www.purescript.org)
 
-- [Module documentation](docs/Module.md)
+## Module documentation
+
+- [Extensions](docs/Extensions.md)
 
 Build with:
 ~~~
