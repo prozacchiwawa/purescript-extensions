@@ -2,7 +2,7 @@
 
 // module Extensions
 
-(function () {
+
     "use strict";
 
     function fail(s) {
@@ -35,4 +35,3 @@
         };
       };
   }
-}());
