@@ -33,3 +33,6 @@ mapM f array = sequence (map f array)
 
 -- | Map with effects over an array of values.
 foreign import mapE :: forall a b e. (a -> Eff e b) -> Array a -> Eff e (Array b)
+
+-- Should go to: Graphics.Canvas
+foreign import data Image :: *
