@@ -14,6 +14,9 @@ module Extensions where
 import Prelude
 import Data.Traversable(sequence)
 import Control.Monad.Eff
+import Data.Maybe.Unsafe(fromJust)
+import Data.Int
+import Math(round)
 
 -- Throws an error
 foreign import fail :: forall a . String -> a
@@ -38,6 +41,9 @@ foreign import mapE :: forall a b e. (a -> Eff e b) -> Array a -> Eff e (Array b
 minInt :: Int -> Int -> Int
 minInt a b | a < b = a
            | otherwise = b
+
+round' :: Number -> Int
+round' = fromJust <<< fromNumber <<< round
 
 -- Should go to: Graphics.Canvas
 foreign import data Image :: *
