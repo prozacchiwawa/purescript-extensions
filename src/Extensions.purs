@@ -24,7 +24,7 @@ foreign import fail :: forall a . String -> a
 -- Undefined, which matches any type
 foreign import undef :: forall a . a
 
--- Trace or log for pure code
+-- log or log for pure code
 foreign import unsafeTrace :: forall a. String -> a -> a
 
 -- Anything goes

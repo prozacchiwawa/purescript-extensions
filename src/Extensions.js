@@ -5,26 +5,26 @@
 
     "use strict";
 
-    function fail(s) {
+    exports.fail = function(s) {
       throw new Error(s);
     }
 
-    function undef() {
+    exports.undef = function() {
         throw new Error("Encountered undefined");
     }
 
-    function unsafeTrace(s) {
+    exports.unsafeTrace = function(s) {
         return function (r) {
             console.log(s);
-            return (r);
+            return r;
         };
     }
 
-    function unsafeCoerce(x) {
+    exports.unsafeCoerce = function(x) {
          return x;
     }
 
-    function mapE(f) {
+    exports.mapE = function(f) {
       return function(arr) {
         return function() {
           var res = new Array(arr.length);
