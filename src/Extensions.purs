@@ -15,8 +15,6 @@ import Prelude
 import Data.Traversable(sequence)
 import Control.Monad.Eff
 import Data.Maybe.Unsafe(fromJust)
-import Data.Int
-import Math(round)
 
 -- Throws an error
 foreign import fail :: forall a . String -> a
