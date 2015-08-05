@@ -42,8 +42,5 @@ minInt :: Int -> Int -> Int
 minInt a b | a < b = a
            | otherwise = b
 
-round' :: Number -> Int
-round' = fromJust <<< fromNumber <<< round
-
 -- Should go to: Graphics.Canvas
 foreign import data Image :: *
