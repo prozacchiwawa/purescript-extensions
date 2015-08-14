@@ -1,5 +1,17 @@
 ## Module Extensions
 
+#### `TIMEOUT`
+
+``` purescript
+data TIMEOUT :: !
+```
+
+#### `timeout`
+
+``` purescript
+timeout :: forall eff a. Int -> Eff (timeout :: TIMEOUT | eff) a -> Eff (timeout :: TIMEOUT | eff) Unit
+```
+
 #### `fail`
 
 ``` purescript
@@ -37,5 +49,17 @@ mapE :: forall a b e. (a -> Eff e b) -> Array a -> Eff e (Array b)
 ```
 
 Map with effects over an array of values.
+
+#### `minInt`
+
+``` purescript
+minInt :: Int -> Int -> Int
+```
+
+#### `Image`
+
+``` purescript
+data Image :: *
+```
 
 

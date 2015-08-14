@@ -35,3 +35,11 @@
         };
       };
   }
+
+    exports.timeout = function(millis) {
+        return function(action) {
+            return function() {
+                setTimeout(action, millis);
+            };
+        };
+    }

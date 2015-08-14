@@ -16,6 +16,13 @@ import Data.Traversable(sequence)
 import Control.Monad.Eff
 import Data.Maybe.Unsafe(fromJust)
 
+foreign import data TIMEOUT :: !
+
+foreign import timeout :: forall eff a.
+                               Int ->
+                               Eff (timeout :: TIMEOUT | eff) a ->
+                               Eff (timeout :: TIMEOUT | eff) Unit
+
 -- Throws an error
 foreign import fail :: forall a . String -> a
 
