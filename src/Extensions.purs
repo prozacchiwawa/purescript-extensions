@@ -20,8 +20,8 @@ foreign import data TIMEOUT :: !
 
 foreign import timeout :: forall eff a.
                                Int ->
-                               Eff (timeout :: TIMEOUT | eff) a ->
-                               Eff (timeout :: TIMEOUT | eff) Unit
+                               Eff eff a ->
+                               Eff eff Unit
 
 -- Throws an error
 foreign import fail :: forall a . String -> a

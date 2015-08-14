@@ -9,7 +9,7 @@ data TIMEOUT :: !
 #### `timeout`
 
 ``` purescript
-timeout :: forall eff a. Int -> Eff (timeout :: TIMEOUT | eff) a -> Eff (timeout :: TIMEOUT | eff) Unit
+timeout :: forall eff a. Int -> Eff eff a -> Eff eff Unit
 ```
 
 #### `fail`
