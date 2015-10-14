@@ -20,6 +20,13 @@ import Data.Maybe.Unsafe(fromJust)
 (>>) :: forall m a b. (Bind m) => m a -> m b -> m b
 (>>) x y = x >>= const y
 
+foreign import data TIMEOUT :: !
+
+foreign import timeout :: forall eff a.
+                               Int ->
+                               Eff eff a ->
+                               Eff eff Unit
+
 -- Throws an error
 foreign import fail :: forall a . String -> a
 
@@ -27,6 +34,7 @@ foreign import fail :: forall a . String -> a
 foreign import undef :: forall a . a
 
 -- log or log for pure code
+-- Deprecated, use purescript-debub (Debug.Trace)
 foreign import unsafeTrace :: forall a. String -> a -> a
 
 -- Anything goes

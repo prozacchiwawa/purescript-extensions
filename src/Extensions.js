@@ -34,7 +34,15 @@
           return res;
         };
       };
-  }
+   }
+
+    exports.timeout = function(millis) {
+        return function(action) {
+            return function() {
+                setTimeout(action, millis);
+            };
+        };
+    }
 
   exports.alert = function(msg) {
     return function() {
