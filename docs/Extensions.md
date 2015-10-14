@@ -1,16 +1,12 @@
 ## Module Extensions
 
-#### `TIMEOUT`
+#### `(>>)`
 
 ``` purescript
-data TIMEOUT :: !
+(>>) :: forall m a b. (Bind m) => m a -> m b -> m b
 ```
 
-#### `timeout`
-
-``` purescript
-timeout :: forall eff a. Int -> Eff eff a -> Eff eff Unit
-```
+_left-associative / precedence -1_
 
 #### `fail`
 
@@ -60,6 +56,12 @@ minInt :: Int -> Int -> Int
 
 ``` purescript
 data Image :: *
+```
+
+#### `alert`
+
+``` purescript
+alert :: forall eff. String -> Eff eff Unit
 ```
 
 

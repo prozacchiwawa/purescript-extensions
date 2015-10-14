@@ -16,12 +16,9 @@ import Data.Traversable(sequence)
 import Control.Monad.Eff
 import Data.Maybe.Unsafe(fromJust)
 
-foreign import data TIMEOUT :: !
 
-foreign import timeout :: forall eff a.
-                               Int ->
-                               Eff eff a ->
-                               Eff eff Unit
+(>>) :: forall m a b. (Bind m) => m a -> m b -> m b
+(>>) x y = x >>= const y
 
 -- Throws an error
 foreign import fail :: forall a . String -> a
@@ -49,3 +46,5 @@ minInt a b | a < b = a
 
 -- Should go to: Graphics.Canvas
 foreign import data Image :: *
+
+foreign import alert :: forall eff. String -> Eff eff Unit
