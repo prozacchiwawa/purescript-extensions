@@ -8,6 +8,18 @@
 
 _left-associative / precedence -1_
 
+#### `TIMEOUT`
+
+``` purescript
+data TIMEOUT :: !
+```
+
+#### `timeout`
+
+``` purescript
+timeout :: forall eff a. Int -> Eff eff a -> Eff eff Unit
+```
+
 #### `fail`
 
 ``` purescript
