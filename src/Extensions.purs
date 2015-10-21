@@ -16,7 +16,6 @@ import Data.Traversable(sequence)
 import Control.Monad.Eff
 import Data.Maybe.Unsafe(fromJust)
 
-
 (>>) :: forall m a b. (Bind m) => m a -> m b -> m b
 (>>) x y = x >>= const y
 
@@ -32,10 +31,6 @@ foreign import fail :: forall a . String -> a
 
 -- Undefined, which matches any type
 foreign import undef :: forall a . a
-
--- log or log for pure code
--- Deprecated, use purescript-debub (Debug.Trace)
-foreign import unsafeTrace :: forall a. String -> a -> a
 
 -- Anything goes
 foreign import unsafeCoerce :: forall a b. a -> b
