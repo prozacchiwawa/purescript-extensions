@@ -32,12 +32,6 @@ fail :: forall a. String -> a
 undef :: forall a. a
 ```
 
-#### `unsafeTrace`
-
-``` purescript
-unsafeTrace :: forall a. String -> a -> a
-```
-
 #### `unsafeCoerce`
 
 ``` purescript
