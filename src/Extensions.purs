@@ -14,7 +14,6 @@ module Extensions where
 import Prelude
 import Data.Traversable(sequence)
 import Control.Monad.Eff
-import Data.Maybe.Unsafe(fromJust)
 
 (>>) :: forall m a b. (Bind m) => m a -> m b -> m b
 (>>) x y = x >>= const y
