@@ -11,14 +11,16 @@
 
 module Extensions where
 
-import Prelude
+import Prelude (class Monad, class Bind, Unit, map, (/), (*), (-), otherwise, negate, (<), (>), (+), (==), mod, const, (>>=))
 import Data.Traversable(sequence)
-import Control.Monad.Eff
+import Control.Monad.Eff (Eff)
 import Data.Array (range)
 import Math(floor)
 
-(>>) :: forall m a b. (Bind m) => m a -> m b -> m b
-(>>) x y = x >>= const y
+infixl 2 bindConst as >>
+
+bindConst :: forall m a b. (Bind m) => m a -> m b -> m b
+bindConst x y = x >>= const y
 
 -- A range function, which only counts up like in Haskell
 hRange :: Int -> Int -> Array Int

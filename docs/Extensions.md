@@ -1,12 +1,46 @@
 ## Module Extensions
 
+Some extensions for purescript
+
 #### `(>>)`
 
 ``` purescript
-(>>) :: forall m a b. (Bind m) => m a -> m b -> m b
+infixl 2 bindConst as >>
 ```
 
-_left-associative / precedence -1_
+_left-associative / precedence 2_
+
+#### `bindConst`
+
+``` purescript
+bindConst :: forall m a b. (Bind m) => m a -> m b -> m b
+```
+
+#### `hRange`
+
+``` purescript
+hRange :: Int -> Int -> Array Int
+```
+
+#### `modInt`
+
+``` purescript
+modInt :: Int -> Int -> Int
+```
+
+#### `signum`
+
+``` purescript
+signum :: Int -> Int
+```
+
+#### `modFloat`
+
+``` purescript
+modFloat :: Number -> Number -> Number
+```
+
+A mod function for Floats
 
 #### `TIMEOUT`
 
@@ -51,12 +85,6 @@ mapE :: forall a b e. (a -> Eff e b) -> Array a -> Eff e (Array b)
 ```
 
 Map with effects over an array of values.
-
-#### `minInt`
-
-``` purescript
-minInt :: Int -> Int -> Int
-```
 
 #### `Image`
 
