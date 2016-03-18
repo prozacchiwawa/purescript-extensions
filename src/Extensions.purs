@@ -63,6 +63,17 @@ mapM f array = sequence (map f array)
 -- | Map with effects over an array of values.
 foreign import mapE :: forall a b e. (a -> Eff e b) -> Array a -> Eff e (Array b)
 
+-- | Map with effects over an array of values. Doesn't return a value
+foreign import mapE_ :: forall a e. (a -> Eff e Unit) -> Array a -> Eff e Unit
+
+-- | Map with effects over an array of values. Calls a break function on every iteration with the index.
+-- If the braek function returns true, the computation will be stopped.
+foreign import mapEBreak :: forall a b e. (a -> Eff e b) -> (Int -> Eff e Boolean) -> Array a -> Eff e (Array b)
+
+-- | Map with effects over an array of values. Calls a break function on every iteration with the index.
+-- If the braek function returns true, the computation will be stopped. Doesn't return a value
+foreign import mapEBreak_ :: forall a e. (a -> Eff e Unit) -> (Int -> Eff e Boolean) -> Array a -> Eff e Unit
+
 -- Should go to: Graphics.Canvas
 foreign import data Image :: *
 

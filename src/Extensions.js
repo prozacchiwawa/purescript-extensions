@@ -36,6 +36,51 @@
       };
    }
 
+   exports.mapE_ = function(f) {
+     return function(arr) {
+       return function() {
+         for (var i = 0; i < arr.length; i++) {
+           f(arr[i])();
+         }
+       };
+     };
+  }
+
+   exports.mapEBreak = function(f) {
+       return function(b) {
+       return function(arr) {
+       return function() {
+         var res = new Array(arr.length);
+         for (var i = 0; i < arr.length; i++) {
+           res[i] = f(arr[i])();
+           var shouldBreak = b(i)();
+           if (shouldBreak) {
+               res = res.slice(0,i);
+                break;
+            };
+        };
+         return res;
+       };
+     };
+   };
+ };
+
+  exports.mapEBreak_ = function(f) {
+      return function(b) {
+      return function(arr) {
+      return function() {
+        for (var i = 0; i < arr.length; i++) {
+          f(arr[i])();
+          var shouldBreak = b(i)();
+          if (shouldBreak) {
+               break;
+           };
+        };
+      };
+    };
+  };
+}
+
     exports.timeout = function(millis) {
         return function(action) {
             return function() {
