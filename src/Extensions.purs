@@ -11,7 +11,7 @@
 
 module Extensions where
 
-import Prelude (class Monad, class Bind, Unit, map, (/), (*), (-), otherwise, negate, (<), (>), (+), (==), mod, const, (>>=))
+import Prelude
 import Data.Traversable(sequence)
 import Control.Monad.Eff (Eff)
 import Data.Array (range)
@@ -39,6 +39,12 @@ signum n | otherwise = 0
 -- | A mod function for Floats
 modFloat :: Number -> Number -> Number
 modFloat n d = n - (floor (n / d)) * d
+
+-- | Perform a monadic action `n` times collecting all of the results.
+replicateM :: forall m a. Monad m => Int -> m a -> m (Array a)
+replicateM n m
+  | n < 1 = pure []
+  | otherwise = sequence $ replicate n m
 
 foreign import data TIMEOUT :: !
 
@@ -73,6 +79,9 @@ foreign import mapEBreak :: forall a b e. (a -> Eff e b) -> (Int -> Eff e Boolea
 -- | Map with effects over an array of values. Calls a break function on every iteration with the index.
 -- If the braek function returns true, the computation will be stopped. Doesn't return a value
 foreign import mapEBreak_ :: forall a e. (a -> Eff e Unit) -> (Int -> Eff e Boolean) -> Array a -> Eff e Unit
+
+-- | Create an array with repeated instances of a value.
+foreign import replicate :: forall a. Int -> a -> Array a
 
 -- Should go to: Graphics.Canvas
 foreign import data Image :: *

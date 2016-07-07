@@ -2,13 +2,4 @@
 
 Extensions for [purescript](http://www.purescript.org)
 
-## Module documentation
-
-- [Extensions](docs/Extensions.md)
-
-Build with:
-~~~
-npm install
-pulp dep install
-pulp build
-~~~
+An ugly bunch and unpure mixture.

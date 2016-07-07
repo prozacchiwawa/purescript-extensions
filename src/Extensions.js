@@ -13,13 +13,6 @@
         throw new Error("Encountered undefined");
     }
 
-    exports.unsafeTrace = function(s) {
-        return function (r) {
-            console.log(s);
-            return r;
-        };
-    }
-
     exports.unsafeCoerce = function(x) {
          return x;
     }
@@ -80,6 +73,15 @@
     };
   };
 }
+
+exports.replicate = function (n) {
+  return function (v) {
+    if (n < 1) return [];
+    var r = new Array(n);
+    for (var i = 0; i < n; i++) r[i] = v;
+    return r;
+  };
+};
 
     exports.timeout = function(millis) {
         return function(action) {

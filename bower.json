@@ -1,10 +1,9 @@
 {
   "name": "purescript-extensions",
-  "version": "0.1.0",
   "dependencies": {
-    "purescript-arrays":"",
-    "purescript-integers":"",
-    "purescript-math":""
+    "purescript-arrays": "^1.0.0",
+    "purescript-integers": "^1.0.0",
+    "purescript-math": "^2.0.0"
   },
   "license": "Apache-2.0"
 }
