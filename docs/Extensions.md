@@ -8,12 +8,10 @@ Some extensions for purescript
 infixl 2 bindConst as >>
 ```
 
-_left-associative / precedence 2_
-
 #### `bindConst`
 
 ``` purescript
-bindConst :: forall m a b. (Bind m) => m a -> m b -> m b
+bindConst :: forall m a b. Bind m => m a -> m b -> m b
 ```
 
 #### `hRange`
@@ -41,6 +39,14 @@ modFloat :: Number -> Number -> Number
 ```
 
 A mod function for Floats
+
+#### `replicateM`
+
+``` purescript
+replicateM :: forall m a. Monad m => Int -> m a -> m (Array a)
+```
+
+Perform a monadic action `n` times collecting all of the results.
 
 #### `TIMEOUT`
 
@@ -75,7 +81,7 @@ unsafeCoerce :: forall a b. a -> b
 #### `mapM`
 
 ``` purescript
-mapM :: forall a b m. (Monad m) => (a -> m b) -> Array a -> m (Array b)
+mapM :: forall a b m. Monad m => (a -> m b) -> Array a -> m (Array b)
 ```
 
 #### `mapE`
@@ -85,6 +91,38 @@ mapE :: forall a b e. (a -> Eff e b) -> Array a -> Eff e (Array b)
 ```
 
 Map with effects over an array of values.
+
+#### `mapE_`
+
+``` purescript
+mapE_ :: forall a e. (a -> Eff e Unit) -> Array a -> Eff e Unit
+```
+
+Map with effects over an array of values. Doesn't return a value
+
+#### `mapEBreak`
+
+``` purescript
+mapEBreak :: forall a b e. (a -> Eff e b) -> (Int -> Eff e Boolean) -> Array a -> Eff e (Array b)
+```
+
+Map with effects over an array of values. Calls a break function on every iteration with the index.
+
+#### `mapEBreak_`
+
+``` purescript
+mapEBreak_ :: forall a e. (a -> Eff e Unit) -> (Int -> Eff e Boolean) -> Array a -> Eff e Unit
+```
+
+Map with effects over an array of values. Calls a break function on every iteration with the index.
+
+#### `replicate`
+
+``` purescript
+replicate :: forall a. Int -> a -> Array a
+```
+
+Create an array with repeated instances of a value.
 
 #### `Image`
 
