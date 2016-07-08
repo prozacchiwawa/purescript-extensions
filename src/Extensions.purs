@@ -16,6 +16,7 @@ import Data.Traversable(sequence)
 import Control.Monad.Eff (Eff)
 import Data.Array (range)
 import Math(floor)
+import Data.List (List(..))
 
 infixl 2 bindConst as >>
 
@@ -45,6 +46,13 @@ replicateM :: forall m a. Monad m => Int -> m a -> m (Array a)
 replicateM n m
   | n < 1 = pure []
   | otherwise = sequence $ replicate n m
+
+-- | Create a list with repeated instances of a value.
+listReplicate :: forall a. Int -> a -> List a
+listReplicate n value = go n Nil
+  where
+  go n rest | n <= 0 = rest
+            | otherwise = go (n - 1) (Cons value rest)
 
 foreign import data TIMEOUT :: !
 

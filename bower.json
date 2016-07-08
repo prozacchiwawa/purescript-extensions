@@ -27,6 +27,7 @@
   "dependencies": {
     "purescript-arrays": "^1.0.0",
     "purescript-integers": "^1.0.0",
-    "purescript-math": "^2.0.0"
+    "purescript-math": "^2.0.0",
+    "purescript-lists": "^1.0.0"
   }
 }
