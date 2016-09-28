@@ -14,9 +14,13 @@ module Extensions where
 import Prelude
 import Data.Traversable(sequence)
 import Control.Monad.Eff (Eff)
-import Data.Array (range)
+import Data.Array (range, length, (!!))
+import Data.Array.Partial (unsafeIndex)
+import Partial.Unsafe (unsafePartial)
 import Math(floor)
 import Data.List (List(..))
+import Control.Monad.Rec.Class
+import Data.Either
 
 infixl 2 bindConst as >>
 
@@ -69,6 +73,15 @@ foreign import undef :: forall a . a
 
 -- Anything goes
 foreign import unsafeCoerce :: forall a b. a -> b
+
+-- | Perform a fold using a monadic step function.
+foldM :: forall m a b. MonadRec m => (a -> b -> m a) -> a -> Array b -> m a
+foldM func init array = tailRecM2 go init 0
+  where
+    go res index | index >= length array = pure (Right res)
+    go res index                         = do
+        res' <- func res (unsafePartial (unsafeIndex array index))
+        pure $ Left {a:res', b:(index + 1)}
 
 -- Monadic map
 mapM :: forall a b m. (Monad m) => (a -> m b) -> Array a -> m (Array b)
