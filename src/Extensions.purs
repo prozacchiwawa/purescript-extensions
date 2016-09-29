@@ -14,13 +14,13 @@ module Extensions where
 import Prelude
 import Data.Traversable(sequence)
 import Control.Monad.Eff (Eff)
-import Data.Array (range, length, (!!))
+import Data.Array (length, range)
 import Data.Array.Partial (unsafeIndex)
 import Partial.Unsafe (unsafePartial)
 import Math(floor)
 import Data.List (List(..))
-import Control.Monad.Rec.Class
-import Data.Either
+import Control.Monad.Rec.Class (class MonadRec, tailRecM2)
+import Data.Either (Either(..))
 
 infixl 2 bindConst as >>
 
