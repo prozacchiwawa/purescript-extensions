@@ -12,15 +12,14 @@
 module Extensions where
 
 import Prelude
-import Data.Traversable(sequence)
 import Control.Monad.Eff (Eff)
-import Data.Array (length, range)
-import Data.Array.Partial (unsafeIndex)
-import Partial.Unsafe (unsafePartial)
-import Math(floor)
+import Control.Monad.Rec.Class (Step(Loop, Done), class MonadRec, tailRecM2)
+import Data.Array (length, range, unsafeIndex)
 import Data.List (List(..))
-import Control.Monad.Rec.Class (class MonadRec, tailRecM2)
-import Data.Either (Either(..))
+import Data.Traversable (sequence)
+import Math (floor)
+import Partial.Unsafe (unsafePartial)
+
 
 infixl 2 bindConst as >>
 
@@ -76,12 +75,14 @@ foreign import unsafeCoerce :: forall a b. a -> b
 
 -- | Perform a fold using a monadic step function.
 foldM :: forall m a b. MonadRec m => (a -> b -> m a) -> a -> Array b -> m a
-foldM func init array = tailRecM2 go init 0
+foldM f a array = tailRecM2 go a 0
   where
-    go res index | index >= length array = pure (Right res)
-    go res index                         = do
-        res' <- func res (unsafePartial (unsafeIndex array index))
-        pure $ Left {a:res', b:(index + 1)}
+  go res i
+    | i >= length array = pure (Done res)
+    | otherwise = do
+        res' <- f res (unsafePartial (unsafeIndex array i))
+        pure (Loop { a: res', b: i + 1 })
+
 
 -- Monadic map
 mapM :: forall a b m. (Monad m) => (a -> m b) -> Array a -> m (Array b)
