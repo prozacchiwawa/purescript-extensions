@@ -29,7 +29,8 @@
     "purescript-integers": "^2.0.0",
     "purescript-math": "^2.0.0",
     "purescript-lists": "^3.0.0",
-    "purescript-tailrec": "^2.0.0"
+    "purescript-tailrec": "^2.0.0",
+    "purescript-foreign": "3.0.0"
   },
   "resolutions": {
     "purescript-arrays": "^3.0.0",
