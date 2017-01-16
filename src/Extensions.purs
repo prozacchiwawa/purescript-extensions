@@ -54,8 +54,8 @@ replicateM n m
 listReplicate :: forall a. Int -> a -> List a
 listReplicate n value = go n Nil
   where
-  go n rest | n <= 0 = rest
-            | otherwise = go (n - 1) (Cons value rest)
+  go n' rest | n' <= 0 = rest
+             | otherwise = go (n' - 1) (Cons value rest)
 
 foreign import data TIMEOUT :: !
 
