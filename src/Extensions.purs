@@ -74,15 +74,14 @@ foreign import undef :: forall a . a
 foreign import unsafeCoerce :: forall a b. a -> b
 
 -- | Perform a fold using a monadic step function.
-foldM :: forall m a b. MonadRec m => (a -> b -> m a) -> a -> Array b -> m a
-foldM f a array = tailRecM2 go a 0
+foldM :: forall m a b. Monad m => (a -> b -> m a) -> a -> Array b -> m a
+foldM f a array = go a 0
   where
   go res i
-    | i >= length array = pure (Done res)
+    | i >= length array = pure res
     | otherwise = do
         res' <- f res (unsafePartial (unsafeIndex array i))
-        pure (Loop { a: res', b: i + 1 })
-
+        go res' (i + 1)
 
 -- Monadic map
 mapM :: forall a b m. (Monad m) => (a -> m b) -> Array a -> m (Array b)
