@@ -12,8 +12,7 @@
 module Extensions where
 
 import Prelude
-import Control.Monad.Eff (Eff)
-import Control.Monad.Rec.Class (Step(Loop, Done), class MonadRec, tailRecM2)
+import Control.Monad.Eff (kind Effect, Eff)
 import Data.Array (length, range, unsafeIndex)
 import Data.List (List(..))
 import Data.Traversable (sequence)
@@ -57,7 +56,7 @@ listReplicate n value = go n Nil
   go n' rest | n' <= 0 = rest
              | otherwise = go (n' - 1) (Cons value rest)
 
-foreign import data TIMEOUT :: !
+foreign import data TIMEOUT :: Effect
 
 foreign import timeout :: forall eff a.
                                Int ->
@@ -105,6 +104,6 @@ foreign import mapEBreak_ :: forall a e. (a -> Eff e Unit) -> (Int -> Eff e Bool
 foreign import replicate :: forall a. Int -> a -> Array a
 
 -- Should go to: Graphics.Canvas
-foreign import data Image :: *
+foreign import data Image :: Type
 
 foreign import alert :: forall eff. String -> Eff eff Unit
