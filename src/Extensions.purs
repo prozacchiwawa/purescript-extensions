@@ -89,8 +89,8 @@ mapM f array = sequence (map f array)
 logA :: forall eff. String -> Eff eff Unit
 logA str = logAny str \_ -> pure unit
 
-log :: forall eff. String -> Eff eff Unit
-log str = logAny str \ _ -> pure unit
+log :: forall a. String -> (Unit -> a) -> a
+log = logAny
 
 
 -- | Map with effects over an array of values.
