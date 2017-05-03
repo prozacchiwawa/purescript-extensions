@@ -98,7 +98,11 @@ exports.alert = function(msg) {
     };
 }
 
-exports.log = function (s) {
-    console.log(s);
-    return {};
+exports.log = function () {
+  return function (x) {
+    return function (k) {
+      console.log(x);
+      return k({});
+    };
+  };
 };
