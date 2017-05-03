@@ -87,7 +87,11 @@ mapM :: forall a b m. (Monad m) => (a -> m b) -> Array a -> m (Array b)
 mapM f array = sequence (map f array)
 
 logA :: forall eff. String -> Eff eff Unit
-logA str = log str \_ -> pure unit
+logA str = logAny str \_ -> pure unit
+
+log :: forall eff. String -> Eff eff Unit
+log str = logAny str \ _ -> pure unit
+
 
 -- | Map with effects over an array of values.
 foreign import mapE :: forall a b e. (a -> Eff e b) -> Array a -> Eff e (Array b)
@@ -111,4 +115,4 @@ foreign import data Image :: Type
 
 foreign import alert :: forall eff. String -> Eff eff Unit
 
-foreign import log :: forall a. String -> (Unit -> a) -> a
+foreign import logAny :: forall a s. s -> (Unit -> a) -> a

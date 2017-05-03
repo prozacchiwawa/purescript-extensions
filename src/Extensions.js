@@ -98,7 +98,7 @@ exports.alert = function(msg) {
     };
 }
 
-exports.log = function () {
+exports.logAny = function () {
   return function (x) {
     return function (k) {
       console.log(x);
