@@ -86,6 +86,11 @@ foldM f a array = go a 0
 mapM :: forall a b m. (Monad m) => (a -> m b) -> Array a -> m (Array b)
 mapM f array = sequence (map f array)
 
+logM :: forall eff. String -> Eff eff Unit
+logM str =
+    let _ = log str
+    in pure unit
+
 -- | Map with effects over an array of values.
 foreign import mapE :: forall a b e. (a -> Eff e b) -> Array a -> Eff e (Array b)
 
@@ -107,3 +112,5 @@ foreign import replicate :: forall a. Int -> a -> Array a
 foreign import data Image :: Type
 
 foreign import alert :: forall eff. String -> Eff eff Unit
+
+foreign import log :: String -> Unit

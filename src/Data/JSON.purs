@@ -1,5 +1,5 @@
 module Data.JSON where
 
-import Data.Foreign (Foreign)
+import Data.CForeign (Foreign)
 
 foreign import stringify :: Foreign -> String

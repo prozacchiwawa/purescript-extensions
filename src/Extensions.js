@@ -83,17 +83,22 @@ exports.replicate = function (n) {
   };
 };
 
-    exports.timeout = function(millis) {
-        return function(action) {
-            return function() {
-                setTimeout(action, millis);
-            };
+exports.timeout = function(millis) {
+    return function(action) {
+        return function() {
+            setTimeout(action, millis);
         };
-    }
+    };
+}
 
-  exports.alert = function(msg) {
+exports.alert = function(msg) {
     return function() {
         window.alert(msg);
         return {};
     };
 }
+
+exports.log = function (s) {
+    console.log(s);
+    return {};
+};
