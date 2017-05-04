@@ -98,11 +98,9 @@ exports.alert = function(msg) {
     };
 }
 
-exports.logAny = function () {
-  return function (x) {
+exports.logAny = function (x) {
     return function (k) {
       console.log(x);
       return k({});
     };
-  };
 };
