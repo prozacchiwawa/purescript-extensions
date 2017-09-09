@@ -30,6 +30,8 @@
     "purescript-math": "^2.0.0",
     "purescript-lists": "^4.0.0",
     "purescript-tailrec": "^3.0.0",
-    "purescript-foreign-clone": "^0.0.1"
+    "purescript-foreign-clone": "^0.0.1",
+    "purescript-partial": "^1.2.1",
+    "purescript-js-date": "^4.0.0"
   }
 }

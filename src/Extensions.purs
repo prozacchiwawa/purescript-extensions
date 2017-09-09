@@ -18,9 +18,12 @@ import Data.List (List(..))
 import Data.Traversable (sequence)
 import Math (floor)
 import Partial.Unsafe (unsafePartial)
+import Data.JSDate(JSDate)
 
 
 infixl 2 bindConst as >>
+
+foreign import parseDate :: String -> JSDate
 
 bindConst :: forall m a b. (Bind m) => m a -> m b -> m b
 bindConst x y = x >>= const y

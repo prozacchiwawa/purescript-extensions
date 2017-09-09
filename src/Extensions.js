@@ -104,3 +104,7 @@ exports.logAny = function (x) {
       return k({});
     };
 };
+
+exports.parseDate = function (dateString) {
+    return new Date(dateString);
+};
