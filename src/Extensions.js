@@ -108,3 +108,7 @@ exports.logAny = function (x) {
 exports.parseDate = function (dateString) {
     return new Date(dateString);
 };
+
+exports.toISOString = function (date) {
+    return date.toISOString();
+};

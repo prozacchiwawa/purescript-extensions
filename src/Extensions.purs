@@ -25,6 +25,8 @@ infixl 2 bindConst as >>
 
 foreign import parseDate :: String -> JSDate
 
+foreign import toISOString :: JSDate -> String
+
 bindConst :: forall m a b. (Bind m) => m a -> m b -> m b
 bindConst x y = x >>= const y
 
