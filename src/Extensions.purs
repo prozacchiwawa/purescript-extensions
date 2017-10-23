@@ -19,6 +19,7 @@ import Data.Traversable (sequence)
 import Math (floor)
 import Partial.Unsafe (unsafePartial)
 import Data.JSDate(JSDate)
+import Data.CForeign (Foreign)
 
 
 infixl 2 bindConst as >>
