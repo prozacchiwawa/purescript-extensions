@@ -112,3 +112,7 @@ exports.parseDate = function (dateString) {
 exports.toISOString = function (date) {
     return date.toISOString();
 };
+
+exports.stringify = function(x) {
+    return JSON.stringify(x);
+};

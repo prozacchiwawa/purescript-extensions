@@ -121,3 +121,5 @@ foreign import data Image :: Type
 foreign import alert :: forall eff. String -> Eff eff Unit
 
 foreign import logAny :: forall a s. s -> (Unit -> a) -> a
+
+foreign import stringify :: Foreign -> String
