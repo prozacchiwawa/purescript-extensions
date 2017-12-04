@@ -99,24 +99,24 @@ exports.alert = function(msg) {
 }
 
 exports.logAny = function (level) {
-    const logLevelString = level.constructor.name;
     return function (text) {
         return function (k) {
+            logLevelString = level.constructor.name;
             if (log == null) {
-                console.log(logLevelString, ": ", args);
-            } else { 
-                if (logLevelString == "Trace"){
-                    log.trace(args);
-                } else if (logLevelString == "Debug"){
-                    log.debug(args);
-                } else if (logLevelString == "Info"){
-                    log.info(args);
-                } else if (logLevelString == "Warn"){
-                    log.warn(args);
-                } else if (logLevelString == "Error"){
-                    log.error(args);
-                } else if (logLevelString == "Fatal"){
-                    log.fatal(args);
+                console.log(logLevelString, ": ", text);
+            } else {
+                if (logLevelString == "$$Trace"){
+                    log.trace(text);
+                } else if (logLevelString == "$$Debug"){
+                    log.debug(text);
+                } else if (logLevelString == "$$Info"){
+                    log.info(text);
+                } else if (logLevelString == "$$Warn"){
+                    log.warn(text);
+                } else if (logLevelString == "$$Error"){
+                    log.error(text);
+                } else if (logLevelString == "$$Fatal"){
+                    log.fatal(text);
               }
           }
       }
