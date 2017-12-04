@@ -92,10 +92,19 @@ foldM f a array = go a 0
 mapM :: forall a b m. (Monad m) => (a -> m b) -> Array a -> m (Array b)
 mapM f array = sequence (map f array)
 
-logA :: forall eff. String -> Eff eff Unit
-logA str = logAny str \_ -> pure unit
+-- Logging
+data LogLevel =
+      Trace
+    | Debug
+    | Info
+    | Warn
+    | Error
+    | Fatal
 
-log :: forall a. String -> (Unit -> a) -> a
+logA :: forall eff. LogLevel -> String -> Eff eff Unit
+logA logLevel str = logAny logLevel str \_ -> pure unit
+
+log :: forall a. LogLevel -> String -> (Unit -> a) -> a
 log = logAny
 
 
@@ -121,6 +130,6 @@ foreign import data Image :: Type
 
 foreign import alert :: forall eff. String -> Eff eff Unit
 
-foreign import logAny :: forall a s. s -> (Unit -> a) -> a
+foreign import logAny :: forall a s. LogLevel -> s -> (Unit -> a) -> a
 
 foreign import stringify :: Foreign -> String
