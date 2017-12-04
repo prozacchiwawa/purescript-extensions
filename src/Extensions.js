@@ -102,21 +102,22 @@ exports.logAny = function(level) {
     return function(text) {
         return function(k) {
             const logLevelString = level.constructor.name;
-            if (log == null) {
+            console.log(logLevelString, ": ", text);
+            if (log4js == null) {
                 console.log(logLevelString, ": ", text);
             } else {
                 if (logLevelString == "Trace"){
-                    log.trace(text);
+                    log4js.trace(text);
                 } else if (logLevelString == "Debug"){
-                    log.debug(text);
+                    log4js.debug(text);
                 } else if (logLevelString == "Info"){
-                    log.info(text);
+                    log4js.info(text);
                 } else if (logLevelString == "Warn"){
-                    log.warn(text);
+                    log4js.warn(text);
                 } else if (logLevelString == "Error"){
-                    log.error(text);
+                    log4js.error(text);
                 } else if (logLevelString == "Fatal"){
-                    log.fatal(text);
+                    log4js.fatal(text);
               }
           }
           return k({});
