@@ -101,7 +101,7 @@ exports.alert = function(msg) {
 exports.logAny = function (level) {
     return function (text) {
         return function (k) {
-            logLevelString = level.constructor.name;
+            const logLevelString = level.constructor.name;
             if (log == null) {
                 console.log(logLevelString, ": ", text);
             } else {
