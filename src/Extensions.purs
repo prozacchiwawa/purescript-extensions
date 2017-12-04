@@ -101,12 +101,17 @@ data LogLevel =
     | Error
     | Fatal
 
-logA :: forall eff. LogLevel -> String -> Eff eff Unit
-logA logLevel str = logAny logLevel str \_ -> pure unit
+logA :: forall eff. String -> Eff eff Unit
+logA str = logAny Trace str \_ -> pure unit
 
-log :: forall a. LogLevel -> String -> (Unit -> a) -> a
-log = logAny
+log :: forall a. String -> (Unit -> a) -> a
+log = logAny Trace
 
+logA' :: forall eff. LogLevel -> String -> Eff eff Unit
+logA' logLevel str = logAny logLevel str \_ -> pure unit
+
+log' :: forall a. LogLevel -> String -> (Unit -> a) -> a
+log' = logAny
 
 -- | Map with effects over an array of values.
 foreign import mapE :: forall a b e. (a -> Eff e b) -> Array a -> Eff e (Array b)
