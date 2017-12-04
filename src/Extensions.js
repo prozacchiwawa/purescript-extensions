@@ -98,9 +98,9 @@ exports.alert = function(msg) {
     };
 }
 
-exports.logAny = function (level) {
-    return function (text) {
-        return function (k) {
+exports.logAny = function(level) {
+    return function(text) {
+        return function(k) {
             const logLevelString = level.constructor.name;
             if (log == null) {
                 console.log(logLevelString, ": ", text);
@@ -119,9 +119,9 @@ exports.logAny = function (level) {
                     log.fatal(text);
               }
           }
+          return k({});
       }
-      return k({});
-    };
+    }
 };
 
 exports.parseDate = function (dateString) {
