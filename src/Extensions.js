@@ -106,17 +106,17 @@ exports.logAny = function(level) {
             if (log4js == null) {
                 console.log(logLevelString, ": ", text);
             } else {
-                if (logLevelString == "Trace"){
+                if (logLevelString == "trace"){
                     log4js.trace(text);
-                } else if (logLevelString == "Debug"){
+                } else if (logLevelString == "debug"){
                     log4js.debug(text);
-                } else if (logLevelString == "Info"){
+                } else if (logLevelString == "info"){
                     log4js.info(text);
-                } else if (logLevelString == "Warn"){
+                } else if (logLevelString == "warn"){
                     log4js.warn(text);
-                } else if (logLevelString == "Error"){
+                } else if (logLevelString == "error"){
                     log4js.error(text);
-                } else if (logLevelString == "Fatal"){
+                } else if (logLevelString == "fatal"){
                     log4js.fatal(text);
               }
           }
